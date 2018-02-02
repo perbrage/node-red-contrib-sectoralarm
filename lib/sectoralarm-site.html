@@ -1,0 +1,52 @@
+<script type="text/javascript">
+        RED.nodes.registerType('sectoralarm-site',{
+        category: 'Sector Alarm',
+        defaults: {
+            siteId: {value:"", required:true},
+            siteName: {value:""}
+        },
+        credentials: {
+            email: {type:"text", required: true},
+            password: {type:"password", required: true}
+        },
+        icon: "sectoralarmlogo.png",
+        color: "#FFFFFF", 
+        paletteLabel: "Site",
+        inputs:1,
+        outputs:2,
+        inputLabels: "send msg.payload: 'status' to get status, 'history' to get history or 'check' at intervals to check for changes in status",
+        outputLabels: ["status or history output", "status changes notifications" ],
+        label: function() {
+            return this.siteName || "Site";
+        }
+    });
+</script>
+
+<script type="text/x-red" data-template-name="sectoralarm-site">
+    <div class="form-row">
+        <label for="node-input-email"><i class="icon-tag"></i> E-Mail</label>
+        <input type="text" id="node-input-email" placeholder="Your account email">
+    </div>
+    <div class="form-row">
+        <label for="node-input-password"><i class="icon-tag"></i> Password</label>
+        <input type="password" id="node-input-password" placeholder="Your account password">
+    </div>
+    <div class="form-row">
+        <label for="node-input-siteId"><i class="icon-tag"></i>SiteId</label>
+        <input type="text" id="node-input-siteId" placeholder="Id of your site (panel)">
+    </div>
+    <div class="form-row">
+        <label for="node-input-siteName"><i class="icon-tag"></i>siteName</label>
+        <input type="text" id="node-input-siteName" placeholder="Your site name (optional)">
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="sectoralarm-site">
+    <p>This connects to the Swedish Sector Alarm and can check your alarm status and history. Using the check
+        at intervals, you can also get notified as the status changes. 2-3 second intervals should be used.
+    </p>
+    <p> Inject msg.payload = 'status' to input, to output the status from output #1 </p>
+    <p> Inject msg.payload = 'history' to input, to ouput the history from output #1 </p>
+    <p> Inject msg.payload = 'check' to input, to output status information if alarm has changed on output #2 </p>
+</script>
+
