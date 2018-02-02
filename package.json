@@ -1,15 +1,30 @@
 {
   "name": "node-red-contrib-sectoralarm",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "version": "1.0.2",
+  "description": "Adds the ability to react to changes in armed status of Swedish Sector Alarm sites",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "node-red",
+    "sectoralarm",
+    "alarm"
+  ],
+  "author": "Per Brage",
+  "license": "MIT",
   "dependencies": {
     "sectoralarm": "^1.0.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/perbrage/node-red-contrib-sectoralarm"
+  },
+  "bugs": {
+    "url": "https://github.com/perbrage/node-red-contrib-sectoralarm/issues"
+  },
+  "node-red": {
+    "nodes": {
+      "site": "lib/sectoralarm-site.js"
+    }
   }
 }
