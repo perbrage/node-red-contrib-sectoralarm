@@ -14,8 +14,8 @@
         paletteLabel: "Site",
         inputs:1,
         outputs:2,
-        inputLabels: "send msg.payload: 'status' to get status, 'history' to get history or 'check' at intervals to check for changes in status",
-        outputLabels: ["status or history output", "status changes notifications" ],
+        inputLabels: "send msg.payload: 'status', 'history' or 'check' at intervals",
+        outputLabels: ["status or history output", "status output when alarm changes" ],
         label: function() {
             return this.siteName || "Site";
         }
