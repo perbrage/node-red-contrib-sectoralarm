@@ -3,19 +3,21 @@
         category: 'Sector Alarm',
         defaults: {
             siteId: {value:"", required:true},
-            siteName: {value:""}
+            siteName: {value:""},
+            historyCount: {value:10, validate:RED.validators.number()}
         },
         credentials: {
             email: {type:"text", required: true},
-            password: {type:"password", required: true}
+            password: {type:"password", required: true},
+            code: {type:"password"}
         },
         icon: "sectoralarmlogo.png",
         color: "#FFFFFF", 
         paletteLabel: "Site",
         inputs:1,
         outputs:2,
-        inputLabels: "send msg.payload: 'status' to get status, 'history' to get history or 'check' at intervals to check for changes in status",
-        outputLabels: ["status or history output", "status changes notifications" ],
+        inputLabels: "send msg.payload: 'arm', 'partialArm', 'disarm', status', 'history', or you can 'check' at intervals",
+        outputLabels: ["status or history output", "status output when alarm changes from either checking or changing alarm state" ],
         label: function() {
             return this.siteName || "Site";
         }
@@ -24,29 +26,40 @@
 
 <script type="text/x-red" data-template-name="sectoralarm-site">
     <div class="form-row">
-        <label for="node-input-email"><i class="icon-tag"></i> E-Mail</label>
+        <label for="node-input-email"><i class="icon-envelope"></i>E-Mail</label>
         <input type="text" id="node-input-email" placeholder="Your account email">
     </div>
     <div class="form-row">
-        <label for="node-input-password"><i class="icon-tag"></i> Password</label>
+        <label for="node-input-password"><i class="icon-tag"></i>Password</label>
         <input type="password" id="node-input-password" placeholder="Your account password">
     </div>
     <div class="form-row">
-        <label for="node-input-siteId"><i class="icon-tag"></i>SiteId</label>
+        <label for="node-input-siteId"><i class="icon-tag"></i>Site Id</label>
         <input type="text" id="node-input-siteId" placeholder="Id of your site (panel)">
     </div>
     <div class="form-row">
-        <label for="node-input-siteName"><i class="icon-tag"></i>siteName</label>
+        <label for="node-input-code"><i class="icon-tag"></i>Code</label>
+        <input type="password" id="node-input-code" placeholder="Your alarm code (optional)">
+    </div>
+    <div class="form-row">
+            <label for="node-input-historyCount"><i class="icon-tag"></i>History Count</label>
+            <input type="text" id="node-input-historyCount" placeholder="Number of records from history to output">
+        </div>
+    <div class="form-row">
+        <label for="node-input-siteName"><i class="icon-home"></i>siteName</label>
         <input type="text" id="node-input-siteName" placeholder="Your site name (optional)">
     </div>
 </script>
 
 <script type="text/x-red" data-help-name="sectoralarm-site">
-    <p>This connects to the Swedish Sector Alarm and can check your alarm status and history. Using the check
-        at intervals, you can also get notified as the status changes. 2-3 second intervals should be used.
+    <p>This node connects to Sector Alarm and can check your alarm status and history. You can also change the state
+        of your alarm if you configure a code in settings. Using the check at intervals, you can also get notified as 
+        the status changes. 2-3 second intervals should be used.
     </p>
     <p> Inject msg.payload = 'status' to input, to output the status from output #1 </p>
     <p> Inject msg.payload = 'history' to input, to ouput the history from output #1 </p>
     <p> Inject msg.payload = 'check' to input, to output status information if alarm has changed on output #2 </p>
+    <p> Inject msg.payload = 'arm', 'partialArm' or 'disarm' to input to change your alarms state. Note, you must 
+        enter your code for these to work</p>
 </script>
 

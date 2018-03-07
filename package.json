@@ -1,7 +1,7 @@
 {
   "name": "node-red-contrib-sectoralarm",
-  "version": "1.0.2",
-  "description": "Adds the ability to react to changes in armed status of Swedish Sector Alarm sites",
+  "version": "1.1.0",
+  "description": "Adds the ability to react to changes in armed status of Sector Alarm sites, as well as change the alarm status",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -13,7 +13,7 @@
   "author": "Per Brage",
   "license": "MIT",
   "dependencies": {
-    "sectoralarm": "^1.0.1"
+    "sectoralarm": "^1.1.0"
   },
   "repository": {
     "type": "git",
