@@ -49,17 +49,81 @@
         <label for="node-input-siteName"><i class="icon-home"></i>Name</label>
         <input type="text" id="node-input-siteName" placeholder="Your site name (optional)">
     </div>
+    <div class="form-tips"><b>Tip:</b> 
+        If you are only fetching status and/or history and your will never toggle your alarm, a code does not to be configured.
+    </div>
+    <div class="form-tips"><b>Tip:</b> 
+        The history # allows you to control the number of events from your alarms history to be sent to the output.
+    </div>
 </script>
 
 <script type="text/x-red" data-help-name="sectoralarm-site">
-    <p>This node connects to Sector Alarm and can check your alarm status and history. You can also change the state
-        of your alarm if you configure a code in settings. Using the check at intervals, you can also get notified as 
-        the status changes. 2-3 second intervals should be used.
+    <p>Connects to your Sector Alarm site, and enables you to toggle your alarm, fetch current status and your alarms recent history. You can also 
+        inject checks at intervals, so you can get notified when the alarm status change. Typical usage would be 
+        turning on/off lights when arming or disarming your alarm.
     </p>
-    <p> Inject msg.payload = 'status' to input, to output the status from output #1 </p>
-    <p> Inject msg.payload = 'history' to input, to ouput the history from output #1 </p>
-    <p> Inject msg.payload = 'check' to input, to output status information if alarm has changed on output #2 </p>
-    <p> Inject msg.payload = 'arm', 'partialArm' or 'disarm' to input to change your alarms state. Note, you must 
-        enter your code for these to work</p>
+
+    <h3>Inputs</h3>
+    <dl class="message-properties">
+        <dt>payload
+            <span class="property-type">string</span>
+        </dt>
+        <dd> input payload should contain one of the following keywords:</dd>
+        <ul>
+            <li>status</li>
+            <p> fetches the current state of the alarm.</p>
+            <li>history</li>
+            <p> fetches a list of recent alarm events.</p>
+            <li>check</li>
+            <p> this input should be sent in intervals of 2-3 seconds. If the alarm has changed, a payload will be sent to output #2 with information about the change.
+            <li>arm</li>
+            <p> arms your alarm. Requires a code to be configured in settings.
+            <li>partialArm</li>
+            <p> partially arms your alarm, if your site supports it. Requires a code to be configured in settings.
+            <li>disarm</li>
+            <p> disarms your alarm. Requires a code to be configured in settings.
+        </ul>
+    </dl>
+
+    <h3>Outputs</h3>
+    <ol class="node-ports">
+        <li>Status and History output
+            <dl class="message-properties">
+                <dt>payload <span class="property-type">JSON</span></dt>
+                <dd>a message containing the current status or the alarm, or the recent history of events. 
+                    The history record count can be limited in settings. Default is 10 records.</dd>
+            </dl>
+        </li>
+        <li>Checks output
+            <dl class="message-properties">
+                <dt>payload <span class="property-type">JSON</span></dt>
+                <dd>a message is sent every time the alarm changes by using the the 'check' input payload.</dd>
+            </dl>
+        </li>
+        <li>Arming/Disarming output
+            <dl class="message-properties">
+                <dt>payload <span class="property-type">JSON</span></dt>
+                <dd>a message stating the success of the arming, partial arming or disarming of the alarm.</dd>
+            </dl>
+        </li>
+        <li>Error output
+                <dl class="message-properties">
+                    <dt>payload <span class="property-type">JSON</span></dt>
+                    <dd>when errors occur, messages are sent on this output..</dd>
+                </dl>
+        </li>        
+    </ol>
+
+    <h3>Country support</h3>
+    <p>This node works with Sector Alarm in Sweden, Norway, Finland, Spain and Ireland (PhoneWatch)</p>
+    <p>Only Sweden and Norway are however verified to work, please drop a note on github if you use this node in any other supported country.</p>
+
+    <h3>References</h3>
+    <ul>
+        <li><a href="https://github.com/perbrage/node-red-contrib-sectoralarm">GitHub Home</a> - github home for this node.</li>
+        <li><a href="https://github.com/perbrage/node-red-contrib-sectoralarm/issues">GitHub Issues</a> - issue reporting for this node.</li>
+        <li><a href="https://github.com/perbrage/sectoralarm">General NodeJS library</a> - the library this node is based on.</li>
+    </ul>
+
 </script>
 
