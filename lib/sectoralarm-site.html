@@ -15,9 +15,9 @@
         color: "#FFFFFF", 
         paletteLabel: "Site",
         inputs:1,
-        outputs:2,
-        inputLabels: "send msg.payload: 'arm', 'partialArm', 'disarm', status', 'history', or you can 'check' at intervals",
-        outputLabels: ["status or history output", "status output when alarm changes from either checking or changing alarm state" ],
+        outputs:4,
+        inputLabels: "Send 'arm', 'partialArm', 'disarm', status', 'history', or you can 'check' at intervals",
+        outputLabels: ["Output for 'status' and 'history'", "Output for when alarm changes using 'check'", "Output when changing alarm state with 'arm', 'partialArm' or 'disarm'", "Output of error messages" ],
         label: function() {
             return this.siteName || "Site";
         }
@@ -30,23 +30,23 @@
         <input type="text" id="node-input-email" placeholder="Your account email">
     </div>
     <div class="form-row">
-        <label for="node-input-password"><i class="icon-tag"></i>Password</label>
+        <label for="node-input-password"><i class="icon-lock"></i>Password</label>
         <input type="password" id="node-input-password" placeholder="Your account password">
     </div>
     <div class="form-row">
-        <label for="node-input-siteId"><i class="icon-tag"></i>Site Id</label>
+        <label for="node-input-siteId"><i class="icon-lock"></i>Site Id</label>
         <input type="text" id="node-input-siteId" placeholder="Id of your site (panel)">
     </div>
     <div class="form-row">
-        <label for="node-input-code"><i class="icon-tag"></i>Code</label>
+        <label for="node-input-code"><i class="icon-lock"></i>Code</label>
         <input type="password" id="node-input-code" placeholder="Your alarm code (optional)">
     </div>
     <div class="form-row">
-            <label for="node-input-historyCount"><i class="icon-tag"></i>History Count</label>
+            <label for="node-input-historyCount"><i class="icon-list"></i>History #</label>
             <input type="text" id="node-input-historyCount" placeholder="Number of records from history to output">
         </div>
     <div class="form-row">
-        <label for="node-input-siteName"><i class="icon-home"></i>siteName</label>
+        <label for="node-input-siteName"><i class="icon-home"></i>Name</label>
         <input type="text" id="node-input-siteName" placeholder="Your site name (optional)">
     </div>
 </script>
