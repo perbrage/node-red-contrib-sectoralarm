@@ -16,8 +16,8 @@
         paletteLabel: "Site",
         inputs:1,
         outputs:4,
-        inputLabels: "Send 'arm', 'partialArm', 'disarm', status', 'history', or you can 'check' at intervals",
-        outputLabels: ["Output for 'status' and 'history'", "Output for when alarm changes using 'check'", "Output when changing alarm state with 'arm', 'partialArm' or 'disarm'", "Output of error messages" ],
+        inputLabels: "Send 'arm', 'partialArm', 'disarm', status', 'history', 'check', 'annexArm' or 'annexDisarm'",
+        outputLabels: ["Output for 'status' and 'history'", "Output for when alarm changes using 'check'", "Output when changing alarm state with 'arm', 'partialArm', 'disarm', 'annexArm' or 'annexDisarm'", "Output of error messages" ],
         label: function() {
             return this.siteName || "Site";
         }
@@ -50,7 +50,7 @@
         <input type="text" id="node-input-siteName" placeholder="Your site name (optional)">
     </div>
     <div class="form-tips"><b>Tip:</b> 
-        If you are only fetching status and/or history and your will never toggle your alarm, a code does not to be configured.
+        If you are only fetching status and/or history and you will never toggle your alarm, a code does not need to be configured.
     </div>
     <div class="form-tips"><b>Tip:</b> 
         The history # allows you to control the number of events from your alarms history to be sent to the output.
@@ -82,6 +82,10 @@
             <p> partially arms your alarm, if your site supports it. Requires a code to be configured in settings.
             <li>disarm</li>
             <p> disarms your alarm. Requires a code to be configured in settings.
+            <li>annexArm</li>
+            <p> arms your annex alarm. Requires a code to be configured in settings.
+            <li>annexDisarm</li>
+            <p> disarms your annex alarm. Requires a code to be configured in settings.
         </ul>
     </dl>
 
