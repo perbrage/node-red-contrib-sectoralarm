@@ -13,7 +13,7 @@
   "author": "Per Brage",
   "license": "MIT",
   "dependencies": {
-    "sectoralarm": "^1.2.1"
+    "sectoralarm": "1.3.0"
   },
   "repository": {
     "type": "git",
