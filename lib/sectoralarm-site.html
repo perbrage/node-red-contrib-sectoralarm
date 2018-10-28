@@ -16,8 +16,8 @@
         paletteLabel: "Site",
         inputs:1,
         outputs:4,
-        inputLabels: "Send 'arm', 'partialArm', 'disarm', status', 'history', 'check', 'annexArm' or 'annexDisarm'",
-        outputLabels: ["Output for 'status' and 'history'", "Output for when alarm changes using 'check'", "Output when changing alarm state with 'arm', 'partialArm', 'disarm', 'annexArm' or 'annexDisarm'", "Output of error messages" ],
+        inputLabels: "Send 'arm', 'partialArm', 'disarm', status', 'history', 'temperatures', 'check', 'annexArm' or 'annexDisarm'",
+        outputLabels: ["Output for 'status', 'history' and 'temperatures'", "Output for when alarm changes using 'check'", "Output when changing alarm state with 'arm', 'partialArm', 'disarm', 'annexArm' or 'annexDisarm'", "Output of error messages" ],
         label: function() {
             return this.siteName || "Site";
         }
@@ -74,6 +74,8 @@
             <p> fetches the current state of the alarm.</p>
             <li>history</li>
             <p> fetches a list of recent alarm events.</p>
+            <li>temperatures</li>
+            <p> fetches a list of temperatures from your sensors connected to the alarm</p>
             <li>check</li>
             <p> this input should be sent in intervals of 2-3 seconds. If the alarm has changed, a payload will be sent to output #2 with information about the change.
             <li>arm</li>
@@ -94,7 +96,7 @@
         <li>Status and History output
             <dl class="message-properties">
                 <dt>payload <span class="property-type">JSON</span></dt>
-                <dd>a message containing the current status or the alarm, or the recent history of events. 
+                <dd>a message containing the current status or the alarm, temperature readings or the recent history of events. 
                     The history record count can be limited in settings. Default is 10 records.</dd>
             </dl>
         </li>
