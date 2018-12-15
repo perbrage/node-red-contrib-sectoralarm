@@ -70,12 +70,16 @@
         </dt>
         <dd> input payload should contain one of the following keywords:</dd>
         <ul>
+            <li>info</li>
+            <p> fetches general information alarm and site, and the devices connected to it.</p>            
             <li>status</li>
             <p> fetches the current state of the alarm.</p>
             <li>history</li>
             <p> fetches a list of recent alarm events.</p>
             <li>temperatures</li>
-            <p> fetches a list of temperatures from your sensors connected to the alarm</p>
+            <p> fetches current temperatures from your sensors connected to the alarm</p>
+            <li>locks</li>
+            <p> fetches status of your locks connected to the alarm</p>
             <li>check</li>
             <p> this input should be sent in intervals of 2-3 seconds. If the alarm has changed, a payload will be sent to output #2 with information about the change.
             <li>arm</li>
