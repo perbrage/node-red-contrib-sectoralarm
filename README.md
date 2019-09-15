@@ -17,7 +17,7 @@ Country     | Site                       | Verified
 ----------- | -------------------------- | -----------
 Sweden      | http://www.sectoralarm.se  | Yes
 Norway      | http://www.sectoralarm.no  | Yes
-Finland     | http://www.sectoralarm.fi  | No
+Finland     | http://www.sectoralarm.fi  | Yes
 Spain       | http://www.sectoralarm.es  | No
 Ireland     | http://www.phonewatch.ie   | No
 
