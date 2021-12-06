@@ -1,5 +1,5 @@
 {
-  "name": "node-red-contrib-sectoralarm",
+  "name": "node-red-contrib-sectoralarm-code-optional",
   "version": "1.0.0",
   "description": "Adds the ability to react to changes in armed status of Sector Alarm sites, as well as change the alarm status. This module removes the need for the alarm code to arm the system.",
   "scripts": {
@@ -17,10 +17,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/kallsbo/node-red-contrib-sectoralarm"
+    "url": "https://github.com/kallsbo/node-red-contrib-sectoralarm-code-optional"
   },
   "bugs": {
-    "url": "https://github.com/kallsbo/node-red-contrib-sectoralarm/issues"
+    "url": "https://github.com/kallsbo/node-red-contrib-sectoralarm-code-optional/issues"
   },
   "node-red": {
     "nodes": {
