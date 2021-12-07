@@ -1,14 +1,6 @@
 # node-red-contrib-sectoralarm
 
 A Node-RED node to connect to your Sector Alarm site which enables you to toggle your alarm, fetch the current status and your alarms recent event history. You can also inject checks at intervals, so you can get notified when the alarm's status change. Typical usage would be turning on/off lights when arming or disarming your alarm.
-
-# Fork changes
-This was forked from Per Brage project https://github.com/perbrage/node-red-contrib-sectoralarm
-I only removed the need for entering your alarm code when arming or partially arming your system.
-Since this option can be set, at least for the Swedish systems, it was time to implement.
-I also sent a pull request to the original repository but the oldest untouched pull reqeust is almost
-two years old. All other code and text is made by Per Brage. Thanks Per! /Kristofer
-
 ## Supported features
 
 * Checking current status of alarm, annex and connected door locks
