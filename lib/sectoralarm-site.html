@@ -4,7 +4,19 @@
         defaults: {
             siteId: {value:"", required:true},
             siteName: {value:""},
-            historyCount: {value:10, validate:RED.validators.number()}
+            historyCount: {value:10, validate:RED.validators.number()},
+            numberOfRetry: { validate:function(v) {
+                if (v == undefined || v == "")
+                    return true;
+                
+                return isNumeric(v);
+            }},
+            retryDelay: { validate:function(v) {
+                if (v == undefined || v == "")
+                    return true;
+                
+                return isNumeric(v);
+            }}
         },
         credentials: {
             email: {type:"text", required: true},
@@ -22,36 +34,71 @@
             return this.siteName || "Site";
         }
     });
+
+    function isNumeric(val) {
+        return /^-?\d+$/.test(val);
+    }
+
 </script>
 
 <script type="text/x-red" data-template-name="sectoralarm-site">
-    <div class="form-row">
-        <label for="node-input-email"><i class="icon-envelope"></i>E-Mail</label>
-        <input type="text" id="node-input-email" placeholder="Your account email">
+    <div>    
+        <div style="height: 25px;"><b>Account information</b></div>
+        <div class="form-row" style="padding-left: 8px;">
+            <label for="node-input-email"><i class="icon-envelope"></i>E-Mail</label>
+            <input type="text" id="node-input-email" placeholder="Your account email">
+        </div>
+        <div class="form-row" style="padding-left: 8px;">
+            <label for="node-input-password"><i class="icon-lock"></i>Password</label>
+            <input type="password" id="node-input-password" placeholder="Your account password">
+        </div>
+        <div class="form-row" style="padding-left: 8px;">
+            <label for="node-input-code"><i class="icon-lock"></i>Code</label>
+            <input type="password" id="node-input-code" placeholder="Your alarm code (optional)">
+        </div>
+        <div style="border-top: 1px dashed #bbb; height: 10px"></div>
     </div>
-    <div class="form-row">
-        <label for="node-input-password"><i class="icon-lock"></i>Password</label>
-        <input type="password" id="node-input-password" placeholder="Your account password">
+    <div>
+        <div style="height: 25px;"><b>Site information</b></div>
+        <div class="form-row" style="padding-left: 8px;">
+            <label for="node-input-siteId"><i class="icon-lock"></i>Site Id</label>
+            <input type="text" id="node-input-siteId" placeholder="Id of your site (panel)">
+        </div>
+        <div class="form-row" style="padding-left: 8px;">
+            <label for="node-input-siteName"><i class="icon-home"></i>Name</label>
+            <input type="text" id="node-input-siteName" placeholder="Your site name (optional)">
+        </div>
+        <div style="border-top: 1px solid #bbb;">&nbsp;</div>
     </div>
-    <div class="form-row">
-        <label for="node-input-siteId"><i class="icon-lock"></i>Site Id</label>
-        <input type="text" id="node-input-siteId" placeholder="Id of your site (panel)">
+    <div>
+        <div style="height: 25px;"><b>Resilience</b></div>
+        <div class="form-row" style="padding-left: 8px;">
+            <label for="node-input-numberOfRetry"><i class="icon-lock"></i>Retries</label>
+            <input type="text" id="node-input-numberOfRetry" placeholder="Retries before failing (optional, default 3)">
+        </div>
+        <div class="form-row" style="padding-left: 8px;">
+            <label for="node-input-retryDelay"><i class="icon-home"></i>Retry delay</label>
+            <input type="text" id="node-input-retryDelay" placeholder="Retry pause in ms (optional, default 3000ms)">
+        </div>
+        <div style="border-top: 1px solid #bbb;">&nbsp;</div>
     </div>
-    <div class="form-row">
-        <label for="node-input-code"><i class="icon-lock"></i>Code</label>
-        <input type="password" id="node-input-code" placeholder="Your alarm code (optional)">
-    </div>
-    <div class="form-row">
+    <div>
+        <div style="height: 25px;"><b>Misc</b></div>
+        <div class="form-row" style="padding-left: 8px;">
             <label for="node-input-historyCount"><i class="icon-list"></i>History #</label>
             <input type="text" id="node-input-historyCount" placeholder="Number of records from history to output">
         </div>
-    <div class="form-row">
-        <label for="node-input-siteName"><i class="icon-home"></i>Name</label>
-        <input type="text" id="node-input-siteName" placeholder="Your site name (optional)">
     </div>
+    <div>&nbsp;</div>
+    <div class="form-tips"><b>Tip:</b> 
+        If your sector alarm account has been configured to allow arming without a code, you do not need to enter
+        a code.
+    </div>    
+    <div>&nbsp;</div>
     <div class="form-tips"><b>Tip:</b> 
         If you are only fetching status and/or history and you will never toggle your alarm, a code does not need to be configured.
     </div>
+    <div>&nbsp;</div>
     <div class="form-tips"><b>Tip:</b> 
         The history # allows you to control the number of events from your alarms history to be sent to the output.
     </div>
@@ -140,4 +187,3 @@
     </ul>
 
 </script>
-
